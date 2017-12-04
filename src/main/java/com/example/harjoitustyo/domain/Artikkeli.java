@@ -16,12 +16,12 @@ import javax.persistence.*;
 @Data
 public class Artikkeli extends AbstractPersistable<Long> {
 
-    private String otiskko;
+    private String otsikko;
     private String ingressi;
     private String teksti;
 
     @Lob
-    @Basic(fetch = FetchType.LAZY)
+    //@Basic(fetch = FetchType.LAZY)
     private byte[] kuva;
 
     private LocalDateTime paivays;

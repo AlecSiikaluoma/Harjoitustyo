@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-54-83-35-31.compute-1.amazonaws.com:5432/d66gand3a4n2gq?user=eqcboqjdqracqx&password=c192a328970110e72df85a626467aa067daf35d6b6c5be9a64cb9672c2501181&sslmode=require
+    username: eqcboqjdqracqx
+    password: c192a328970110e72df85a626467aa067daf35d6b6c5be9a64cb9672c2501181

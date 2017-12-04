@@ -26,15 +26,14 @@ public class AdminController {
       return "adminpanel";
     }
 
-    @PostMapping("(/admin")
+    @PostMapping("/admin")
     public String lisaa(@RequestParam String otsikko, @RequestParam String ingressi,
-                      @RequestParam("kuva") MultipartFile kuva, @RequestParam String teksti,
+                      @RequestParam("file") MultipartFile file, @RequestParam String teksti,
                       @RequestParam String kirjoittajat, @RequestParam String kategoriat) throws IOException {
-
         Artikkeli artikkeli = new Artikkeli();
-        artikkeli.setOtiskko(otsikko);
+        artikkeli.setOtsikko(otsikko);
         artikkeli.setIngressi(ingressi);
-        artikkeli.setKuva(kuva.getBytes());
+        artikkeli.setKuva(file.getBytes());
         artikkeli.setTeksti(teksti);
         artikkeli.setKirjoittajat(kirjoittajat);
         artikkeli.setKategoriat(kategoriat);

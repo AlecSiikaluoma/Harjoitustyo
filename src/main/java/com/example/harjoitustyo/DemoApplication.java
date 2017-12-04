@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SpringBootApplication
 public class DemoApplication {
 
-	@RequestMapping("/")
-	//@ResponseBody
+	@RequestMapping("*")
+	@ResponseBody
 	String home() {
 		return "index";
 	}

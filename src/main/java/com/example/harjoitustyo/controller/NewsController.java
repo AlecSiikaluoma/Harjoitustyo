@@ -21,8 +21,8 @@ public class NewsController {
 
     @RequestMapping("/")
     public String etusivu(Model model) {
-        Pageable pageable = new PageRequest(0, 5, Sort.Direction.DESC, "paivays");
-        model.addAttribute("artikkelit", artikkelit.findAll(pageable));
+        //Pageable pageable = new PageRequest(0, 5, Sort.Direction.DESC, "paivays");
+        model.addAttribute("artikkelit", artikkelit.findAll());
 
         return "index";
     }
