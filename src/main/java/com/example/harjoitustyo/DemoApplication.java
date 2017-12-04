@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DemoApplication {
 
 	@RequestMapping("/")
-	@ResponseBody
+	//@ResponseBody
 	String home() {
-		return "Hefllo orld!";
+		return "index";
 	}
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
