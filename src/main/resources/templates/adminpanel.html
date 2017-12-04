@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Luo artikkeli</title>
+</head>
+
+<body>
+<h1>Uusi artikkeli</h1>
+
+<div>
+    Aseta artikkelin tiedo ja paina lähetä:<br/>
+    <form th:action="@{/admin}" method="POST" id="artikkeli">
+        Otsikko: <input type="text" name="otsikko" id="otsikko"/><br/>
+        Ingressi: <input type="text" name="ingressi" id="ingressi"/><br/>
+        Kuva: <input type="file" name="kuva" id="kuva"/>
+        <textarea rows="4" cols="50" name="teksti" id="teksti" form="artikkeli"></textarea>
+        <input type="submit"/>
+        Kirjoittajat: <input type="text" name="kirjoittajat" id="kirjoittajat"/><br/>
+        Kategoriat: <input type="text" name="kategoriat" id="kategoriat"/><br/>
+    </form>
+</div>
+
+</body>
+</html>
