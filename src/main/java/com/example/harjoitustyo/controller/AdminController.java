@@ -4,9 +4,15 @@ import com.example.harjoitustyo.domain.Artikkeli;
 import com.example.harjoitustyo.domain.Kategoria;
 import com.example.harjoitustyo.repository.ArtikkeliRepository;
 import com.example.harjoitustyo.repository.KategoriaRepository;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,8 +38,8 @@ public class AdminController {
     private KategoriaRepository kategoriatTable;
 
     @RequestMapping("/admin")
-    public String adminPanel() {
-      return "adminpanel";
+    public String adminPanel(Model model) {
+        return "adminpanel";
     }
 
     @PostMapping("/admin")
@@ -56,7 +62,6 @@ public class AdminController {
                 List<Artikkeli> vanhat = vanha.getArtikkelit();
                 vanhat.add(artikkeli);
                 vanha.setArtikkelit(vanhat);
-                kategoriatTable.save(vanha);
 
                 artikkelinKategoriat.add(vanha);
             } else {

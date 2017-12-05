@@ -17,7 +17,11 @@ import javax.persistence.*;
 public class Artikkeli extends AbstractPersistable<Long> {
 
     private String otsikko;
+    @Column
+    @Lob
     private String ingressi;
+    @Column
+    @Lob
     private String teksti;
 
     @Lob
@@ -26,6 +30,7 @@ public class Artikkeli extends AbstractPersistable<Long> {
 
     private LocalDateTime paivays;
     private String kirjoittajat;
+    private int lukumaarat;
 
     @ManyToMany
     private List<Kategoria> kategoriat;
@@ -34,6 +39,7 @@ public class Artikkeli extends AbstractPersistable<Long> {
 
     public Artikkeli() {
         this.paivays = LocalDateTime.now();
+        this.lukumaarat = 0;
     }
 
 

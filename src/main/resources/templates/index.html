@@ -1,23 +1,109 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title></title>
+
+    <title>Etusivu</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous" />
+    <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+
 </head>
 
 <body>
-<ul>
-    <li th:each="k : ${kategoriat}">
-        <span th:text="${k.nimi}">item name</span>
-    </li>
-</ul>
 
-<h1>Uusimmat uutiset</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Uutissivusto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">
+                        Etusivu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/luetuimmat}">Viikon luetuimmat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/uusimmat}">Uusimmat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">Lisää artikkeli</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<ul>
-    <li th:each="a : ${artikkelit}">
-        <span th:text="${a.otsikko}">item name</span> - <span th:text="${a.kirjoittajat}">value</span> - <span th:text="${a.paivays}">value</span> - <span th:text="${a.paivays}">value</span>
-    </li>
-</ul>
+<div class="container">
+
+        <div>
+            <a th:each="k : ${kategoriat}" class="badge badge-primary" th:text="${k.nimi}" th:href="@{/kategoria/{id}(id=${k.id})}"></a>
+        </div>
+
+        <h1 class="my-4">Etusivu
+            <small>Uusimmat artikkelit</small>
+        </h1>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-3">
+                <div th:if="${!viikonLuetuimmat.empty}">
+                <h3 class="my-4">Viikon luetuimmat</h3>
+                <div class="list-group">
+                    <a th:each="al : ${viikonLuetuimmat}" th:text="${al.otsikko}" th:href="@{/artikkeli/{id}(id=${al.id})}" class="list-group-item">Category 1</a>
+                </div>
+                </div>
+
+                <div th:if="${uusimmat.getTotalElements() > 0}">
+                    <h3 class="my-4">Uusimmat</h3>
+                    <div class="list-group">
+                        <a href="#" th:each="au : ${uusimmat}" th:text="${au.otsikko}" th:href="@{/artikkeli/{id}(id=${au.id})}" class="list-group-item">Category 1</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-9" >
+                <div class="container">
+                    <div class="row" th:each="a : ${artikkelit}">
+                        <a th:href="@{/artikkeli/{id}(id=${a.id})}">
+                            <div class="col-md-7">
+                                    <img class="img-fluid rounded mb-3 mb-md-0" th:src="@{/kuvat/{id}/content(id=${a.id})}" alt="" />
+                            </div>
+                            <div class="col-md-5">
+                                <h3 th:text="${a.otsikko}" style="color:black !important">otsikko</h3>
+                                <p th:text="${a.ingressi}" style="color:black !important">ingressi</p>
+                            </div>
+                        </a>
+                    <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+
+</div>
+
+<br/>
+<br/>
+
+<footer class="py-5 bg-dark" style="background-color: white !important">
+    <div class="container">
+        <hr />
+        <p class="m-0 text-center text-white" style="color: black !important">Uutissivusto 2017</p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

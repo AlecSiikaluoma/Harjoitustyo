@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Uutissivusto</a>
+        <a class="navbar-brand" th:href="@{/}">Uutissivusto</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,7 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/uusimmat}">Uusimmat</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="/admin">Lisää artikkeli</a>
                 </li>
             </ul>
@@ -40,58 +40,51 @@
 <div class="container">
 
     <div>
-        <span th:each="k : ${kategoriat}" class="badge badge-primary" th:text="${k.nimi}"></span>
+        <a th:each="k : ${kategoriat}" class="badge badge-primary" th:text="${k.nimi}" th:href="@{/kategoria/{id}(id=${k.id})}"></a>
     </div>
 
-    <h1 class="my-4">
-        <small>Luo artikkeli</small>
-    </h1>
-    <br />
     <div class="container">
 
         <div class="row">
 
-            <div class="col-lg-9" >
+            <div class="col-lg-3">
+                <div th:if="${!viikonLuetuimmat.empty}">
+                    <h3 class="my-4">Viikon luetuimmat</h3>
+                    <div class="list-group">
+                        <a href="#" th:each="al : ${viikonLuetuimmat}" th:text="${al.otsikko}" th:href="@{/artikkeli/{id}(id=${al.id})}" class="list-group-item">Category 1</a>
+                    </div>
+                </div>
 
-                <div class="row">
-                    <form th:action="@{/admin}" th:method="POST" id="artikkeli" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="otsikko">Otsikko</label>
-                            <input type="text" class="form-control" name="otsikko" id="otsikko" placeholder="Syötä otsikko..." />
-                        </div>
-                        <div class="form-group">
-                            <label for="ingressi">Ingressi</label>
-                            <input type="text" class="form-control" name="ingressi" id="ingressi" placeholder="Syötä ingressi..." />
-                        </div>
-                        <div class="form-group">
-                            <label for="file">Lisää kuva</label>
-                            <input type="file" class="form-control-file" name="file" id="file" />
-                        </div>
-                        <div class="form-group">
-                            Teksti: <textarea rows="4" cols="50" name="teksti" id="teksti" form="artikkeli"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="kirjoittajat">Kirjoittajat (pilkuilla eroteltuina):</label>
-                            <input type="text" class="form-control" name="kirjoittajat" id="kirjoittajat" placeholder="Syötä kirjoittajat..." />
-                        </div>
-                        <div class="form-group">
-                            <label for="kategoriat">Kategoriat (pilkuilla eroteltuina):</label>
-                            <input type="text" class="form-control" name="kategoriat" id="kategoriat" placeholder="Syötä kategoriat..." />
-                        </div>
-                        <input type="submit"/>
-                    </form>
+                <div th:if="${uusimmat.getTotalElements() > 0}">
+                    <h3 class="my-4">Uusimmat</h3>
+                    <div class="list-group">
+                        <a href="#" th:each="au : ${uusimmat}" th:text="${au.otsikko}" th:href="@{/artikkeli/{id}(id=${au.id})}" class="list-group-item">Category 1</a>
+                    </div>
                 </div>
 
             </div>
 
-        </div>
 
+            <div class="col-lg-9" >
+
+
+                <div class="row" th:each="a : ${artikkelit}">
+                    <a th:href="@{/artikkeli/{id}(id=${a.id})}">
+                        <div class="col-md-8">
+                            <h3 th:text="${a.otsikko}" style="color:black !important">otsikko</h3>
+                            <p th:text="${a.paivays.toLocalData()}" style="color:black !important">ingressi</p>
+                        </div>
+                    </a>
+                    <hr/>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <br/>
-    <br/>
-
 </div>
+
+<br/>
+<br/>
 
 <footer class="py-5 bg-dark" style="background-color: white !important">
     <div class="container">
