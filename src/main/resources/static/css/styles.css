@@ -16,3 +16,7 @@ body {
 .col-lg-9 {
    margin-top:40px;
 }
+
+.list-group-item {
+  padding:10px;
+}
