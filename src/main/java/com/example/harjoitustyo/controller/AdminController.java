@@ -53,7 +53,7 @@ public class AdminController {
         artikkeli.setTeksti(teksti);
         artikkeli.setKirjoittajat(kirjoittajat);
 
-        List<String> kategoriatList = Arrays.asList(kategoriat.split(","));
+        List<String> kategoriatList = Arrays.asList(kategoriat.replaceAll("\\s+","").split(","));
         List<Kategoria> kaikki = kategoriatTable.findAll();
         List<Kategoria> artikkelinKategoriat = new ArrayList<>();
         for(String k : kategoriatList) {

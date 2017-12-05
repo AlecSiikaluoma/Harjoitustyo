@@ -66,7 +66,11 @@ public class NewsController {
         Artikkeli a = artikkelit.findOne(id);
         if(a != null) {
             a.setLukumaarat(a.getLukumaarat() + 1);
+            artikkelit.save(a);
         }
+        System.out.println("----");
+        System.out.println(a.getLukumaarat());
+        System.out.println(artikkelit.findOne(id).getLukumaarat());
 
         setLuetuimmatJaKategoriatJaUusimmat(model);
 
