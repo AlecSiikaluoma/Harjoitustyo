@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+</head>
+
+<body>
+<h1>Uusimmat uutiset</h1>
+
+<ul>
+    <li th:each="a : ${artikkelit}">
+        <span th:text="${a.otsikko}">item name</span> - <span th:text="${a.kirjoittajat}">value</span> - <span th:text="${a.paivays}">value</span> - <span th:text="${a.teksti}">value</span>
+    </li>
+</ul>
+
+</body>
+</html>

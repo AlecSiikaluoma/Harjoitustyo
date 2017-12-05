@@ -2,6 +2,7 @@ package com.example.harjoitustyo.controller;
 
 import com.example.harjoitustyo.domain.Artikkeli;
 import com.example.harjoitustyo.repository.ArtikkeliRepository;
+import com.example.harjoitustyo.repository.KategoriaRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,10 +20,14 @@ public class NewsController {
     @Autowired
     private ArtikkeliRepository artikkelit;
 
+    @Autowired
+    private KategoriaRepository kategoriat;
+
     @RequestMapping("/")
     public String etusivu(Model model) {
-        //Pageable pageable = new PageRequest(0, 5, Sort.Direction.DESC, "paivays");
-        model.addAttribute("artikkelit", artikkelit.findAll());
+        Pageable pageable = new PageRequest(0, 5, Sort.Direction.DESC, "paivays");
+        model.addAttribute("artikkelit", artikkelit.findAll(pageable));
+        model.addAttribute("kategoriat", kategoriat.findAll());
 
         return "index";
     }

@@ -26,7 +26,11 @@ public class Artikkeli extends AbstractPersistable<Long> {
 
     private LocalDateTime paivays;
     private String kirjoittajat;
-    private String kategoriat;
+
+    @ManyToMany
+    private List<Kategoria> kategoriat;
+
+    //private String kategoriat;
 
     public Artikkeli() {
         this.paivays = LocalDateTime.now();
