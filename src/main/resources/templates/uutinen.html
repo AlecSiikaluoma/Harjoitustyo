@@ -29,9 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/uusimmat}">Uusimmat</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" href="/admin">Lisää artikkeli</a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-lg-9" >
-                <a th:href="@{/muokkaa/{id}(id=${artikkeli.id})}" class="btn btn-info" role="button">Muokkaa artikkelia</a>
+                <!--<a th:href="@{/muokkaa/{id}(id=${artikkeli.id})}" class="btn btn-info" role="button">Muokkaa artikkelia</a>-->
                 <div class="container">
                     <h1 th:text="${artikkeli.otsikko}"></h1><br/>
                     <h4 th:text="${artikkeli.paivays.toLocalDate()}"></h4>
