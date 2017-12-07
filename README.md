@@ -7,7 +7,7 @@ Sovellus käyttää PostgreSQL tietokantaa, Javaa ja Springiä. Sovellus on yhdi
 Sovelluksen etusivulla näytetään 5 uusinta artikkelia. Sivupalkissa on kaksi listaa. Toisessa näytetään uusimmat artikkelit ja toisessa viikon luetuimmat. 
 
 ## Demo 
-Löytyy osoitteesta: https://harjoitustyo.herokuapp.com
+Löytyy osoitteesta https://harjoitustyo.herokuapp.com
 
 ## Uutiset
 Jokaisella uutisella on:
