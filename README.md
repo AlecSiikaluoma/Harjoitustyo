@@ -1,10 +1,13 @@
 # Harjoitustyo
 
-Sovelluksen avulla voi ylläpitää yksinkertaista uutissivustoa. Sovellus sisältää uutisten sovelluksen hallintapaneelin, jonka avulla voi muokata, lisätä poistaa uutisia.
+Sovelluksella voi ylläpitää yksinkertaista uutissivustoa. Sovellus sisältää uutisten hallintaan tarkoitetun hallintapaneelin, jonka avulla voi muokata, lisätä tai poistaa uutisia.
 
-Sovellus käyttää PostgreSQL tietokantaa. Sovellus on myös yhdistetty githubin kautta Travis Ci. Siellä ajetaan testi ja niiden mennessä läpi sovellus päivitetään Heroku palveluun.
+Sovellus käyttää PostgreSQL tietokantaa, Javaa ja Springiä. Sovellus on yhdistetty githubin kautta Travis Ci palveluun (https://travis-ci.org/AlecSiikaluoma/Harjoitustyo). Siellä ajetaan testit ja niiden mennessä läpi sovellus päivitetään Heroku palveluun.
 
 Sovelluksen etusivulla näytetään 5 uusinta artikkelia. Sivupalkissa on kaksi listaa. Toisessa näytetään uusimmat artikkelit ja toisessa viikon luetuimmat. 
+
+## Demo 
+Löytyy osoitteesta: https://harjoitustyo.herokuapp.com
 
 ## Uutiset
 Jokaisella uutisella on:
@@ -18,6 +21,5 @@ Jokaisella uutisella on:
 - kategoriat (joilla on oma tietokanta taulu)
 
 ## Parennnusehdotuksia 
-- luo kirjoittajille oma tietokanta taulu
-- selaa uutisia kirjoittajien mukaan
+- luo kirjoittajille oma tietokantataulu, jonka avulla voi selata uutisia myös kirjoittajien mukaan
 - haku toiminto

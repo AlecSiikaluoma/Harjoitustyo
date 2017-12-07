@@ -29,16 +29,19 @@ public class NewsController {
     @Autowired
     private KategoriaRepository kategoriat;
 
+    /*  Metodi hakee viikon luetuimat 10 artikkelia, 10 uusinta artikkelia ja kaikki olemassa olevat kategoriat.
+     *  Näitä käytetään useilla sivuilla sivupalkeissa ja kategoriat listataan sivun yläreunaan.
+     */
     public void setLuetuimmatJaKategoriatJaUusimmat(Model model) {
         List<Artikkeli> viikonLuetuimmat = artikkelit.findAll().stream()
                 .filter(x->Days.daysBetween(DateTime.parse(x.getPaivays().toString()), DateTime.now()).getDays() <= 7)
                 .sorted((x,y)->y.getLukumaarat() - x.getLukumaarat())
+                .limit(10)
                 .collect((Collectors.toList()));
+        Pageable pageable2 = new PageRequest(0, 10, Sort.Direction.DESC, "paivays");
+
         model.addAttribute("viikonLuetuimmat", viikonLuetuimmat);
-
-        Pageable pageable2 = new PageRequest(0, 50, Sort.Direction.DESC, "paivays");
         model.addAttribute("uusimmat", artikkelit.findAll(pageable2));
-
         model.addAttribute("kategoriat", kategoriat.findAll());
     }
 
@@ -89,6 +92,7 @@ public class NewsController {
         List<Artikkeli> viikonLuetuimmat = artikkelit.findAll().stream()
                 .filter(x->Days.daysBetween(DateTime.parse(x.getPaivays().toString()), DateTime.now()).getDays() <= 7)
                 .sorted((x,y)->y.getLukumaarat() - x.getLukumaarat())
+                .limit(50)
                 .collect((Collectors.toList()));
 
         model.addAttribute("artikkelit", viikonLuetuimmat);
@@ -99,7 +103,7 @@ public class NewsController {
     @RequestMapping("/kategoria/{id}")
     public String kategoria(Model model, @PathVariable long id) {
         kategoriat.findOne(id).getArtikkelit();
-        List<Artikkeli> kategorian = kategoriat.findOne(id).getArtikkelit();
+        List<Artikkeli> kategorian = kategoriat.findOne(id).getArtikkelit().stream().limit(50).collect(Collectors.toList());
         model.addAttribute("artikkelit", kategorian);
 
         setLuetuimmatJaKategoriatJaUusimmat(model);

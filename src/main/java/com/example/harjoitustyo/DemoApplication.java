@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DemoApplication {
 
 	@RequestMapping("*")
-	@ResponseBody
 	String home() {
-		return "index";
+		return "redirect:/";
 	}
 
 	public static void main(String[] args) {
