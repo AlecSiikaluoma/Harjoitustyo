@@ -103,8 +103,13 @@ public class NewsController {
     @RequestMapping("/kategoria/{id}")
     public String kategoria(Model model, @PathVariable long id) {
         kategoriat.findOne(id).getArtikkelit();
-        List<Artikkeli> kategorian = kategoriat.findOne(id).getArtikkelit().stream().limit(50).collect(Collectors.toList());
-        model.addAttribute("artikkelit", kategorian);
+        List<Artikkeli> kategorian = kategoriat.findOne(id).getArtikkelit();
+        List<Artikkeli> jarjestetty = kategorian.stream()
+                .filter(x->Days.daysBetween(DateTime.parse(x.getPaivays().toString()), DateTime.now()).getDays() <= 7)
+                .sorted((x,y)->y.getLukumaarat() - x.getLukumaarat())
+                .limit(50)
+                .collect((Collectors.toList()));
+        model.addAttribute("artikkelit", jarjestetty);
 
         setLuetuimmatJaKategoriatJaUusimmat(model);
 
