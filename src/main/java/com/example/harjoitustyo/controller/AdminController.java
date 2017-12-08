@@ -34,7 +34,7 @@ public class AdminController {
         return "adminpanel";
     }
 
-    @GetMapping("/muokkaa/{id}")
+    @GetMapping("/admin/muokkaa/{id}")
     public String muokkaa(Model model, @PathVariable long id) {
 
         Artikkeli a = artikkelit.findOne(id);
@@ -44,7 +44,7 @@ public class AdminController {
         return "muokkaus";
     }
 
-    @DeleteMapping("/poista/{id}")
+    @DeleteMapping("/admin/poista/{id}")
     @Transactional
     public String poista(@PathVariable long id) {
 
@@ -66,7 +66,7 @@ public class AdminController {
         return "redirect:/";
     }
 
-    @PostMapping("/muokkaa/{id}")
+    @PostMapping("/admin/muokkaa/{id}")
     public String muokkaa(@PathVariable long id, @RequestParam String otsikko, @RequestParam String ingressi,
                         @RequestParam("file") MultipartFile file, @RequestParam String teksti,
                         @RequestParam String kirjoittajat, @RequestParam String kategoriat) throws IOException {
