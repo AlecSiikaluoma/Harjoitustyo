@@ -19,7 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // mahdollisuus kaikille.
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/kuvat/*").permitAll()
+                .antMatchers("/kuvat/**").permitAll()
                 .antMatchers("/artikkeli/*").permitAll()
                 .antMatchers("/uusimmat").permitAll()
                 .antMatchers("/luetuimmat").permitAll()
