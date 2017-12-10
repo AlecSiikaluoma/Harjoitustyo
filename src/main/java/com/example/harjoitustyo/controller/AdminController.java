@@ -62,7 +62,6 @@ public class AdminController {
 
         artikkelit.delete(id);
 
-
         return "redirect:/";
     }
 
@@ -70,6 +69,7 @@ public class AdminController {
     public String muokkaa(@PathVariable long id, @RequestParam String otsikko, @RequestParam String ingressi,
                         @RequestParam("file") MultipartFile file, @RequestParam String teksti,
                         @RequestParam String kirjoittajat, @RequestParam String kategoriat) throws IOException {
+
         Artikkeli artikkeli = artikkelit.findOne(id);
         artikkeli.setOtsikko(otsikko);
         artikkeli.setIngressi(ingressi);
@@ -103,11 +103,9 @@ public class AdminController {
         }
 
         artikkeli.setKategoriat(artikkelinKategoriat);
-
         artikkelit.save(artikkeli);
 
         return "redirect:/";
-
     }
 
     @PostMapping("/admin")
@@ -151,7 +149,6 @@ public class AdminController {
         artikkelit.save(artikkeli);
 
         return "redirect:/";
-
     }
 
 }
