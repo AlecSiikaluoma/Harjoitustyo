@@ -42,7 +42,6 @@
     <h1 class="my-4">
         <small>Muokkaa artikkeli</small>
     </h1>
-    <a th:href="@{/poista/{id}(id=${a.id})}" data-method="delete" class="btn btn-danger" role="button">Poista</a>
     <form th:action="@{/admin/poista/{id}(id=${a.id})}" th:method="DELETE">
         <input type="submit" value="Poista"/>
     </form>
